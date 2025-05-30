@@ -55,6 +55,7 @@ jobs:
           name: build-dist
           path: |
             dist
+            nginx.conf
             node_modules
             package*.json
             Dockerfile
