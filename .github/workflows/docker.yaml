@@ -10,17 +10,17 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     outputs:
-      sha: ${{ steps.vars.outputs.SHA }}
+      sha: ${{ steps.vars.outputs.sha }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Extract Git SHA
         id: vars
-        run: echo "SHA=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+        run: echo "sha=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
 
       - name: Upload source code
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: source-code
           path: .
@@ -85,10 +85,10 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            ${{env.REPOSITORY}}/eks-demo-frontend-user:${{ needs.checkout.outputs.sha }}
-            ${{env.REPOSITORY}}/eks-demo-frontend-user:latest
-          cache-from: type=registry,ref=${{env.REPOSITORY}}/eks-demo-frontend-user:cache
-          cache-to: type=registry,ref=${{env.REPOSITORY}}/eks-demo-frontend-user:cache,mode=max
+            ${{ env.REPOSITORY }}/eks-demo-frontend-user:${{ needs.checkout.outputs.sha }}
+            ${{ env.REPOSITORY }}/eks-demo-frontend-user:latest
+          cache-from: type=registry,ref=${{ env.REPOSITORY }}/eks-demo-frontend-user:cache
+          cache-to: type=registry,ref=${{ env.REPOSITORY }}/eks-demo-frontend-user:cache,mode=max
           build-args: |
             NODE_ENV=production
             BUILD_VERSION=${{ needs.checkout.outputs.sha }}
