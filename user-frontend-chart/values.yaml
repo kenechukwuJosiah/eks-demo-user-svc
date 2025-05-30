@@ -8,7 +8,7 @@ image:
   repository: kenechukwujosiah/eks-demo-frontend-user
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "471f729"
+  tag: "dcbc257"
 
 imagePullSecrets: []
 nameOverride: ""
