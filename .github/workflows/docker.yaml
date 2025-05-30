@@ -87,8 +87,6 @@ jobs:
           tags: |
             ${{ env.REPOSITORY }}/eks-demo-frontend-user:${{ needs.checkout.outputs.sha }}
             ${{ env.REPOSITORY }}/eks-demo-frontend-user:latest
-          cache-from: type=registry,ref=${{ env.REPOSITORY }}/eks-demo-frontend-user:cache
-          cache-to: type=registry,ref=${{ env.REPOSITORY }}/eks-demo-frontend-user:cache,mode=max
           build-args: |
             NODE_ENV=production
             BUILD_VERSION=${{ needs.checkout.outputs.sha }}
